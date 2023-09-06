@@ -1,3 +1,19 @@
+/* Copyright 2023 Pi Fisher
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include QMK_KEYBOARD_H
 #include "version.h"
 
@@ -12,11 +28,7 @@ enum layers {
 };
 
 enum custom_keycodes {
-#ifdef ORYX_CONFIGURATOR
-  VRSN = EZ_SAFE_RANGE,
-#else
   VRSN = SAFE_RANGE,
-#endif
   RGB_SLD,
   SHRUG,
   SIGNATURE,
@@ -65,14 +77,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [BASE] = LAYOUT_ergodox_pretty(
   KC_EQUAL,	KC_1,	KC_2,	KC_3,	KC_4,	KC_5,	KC_6,                     	KC_5,	KC_6,	KC_7,	KC_8,	KC_9,	KC_0,	KC_MINUS,
-  KC_DELETE,	KC_Q,	KC_W,	KC_E,	KC_R,	KC_T,	TG(UTIL),	TG(UTIL),	KC_Y,	KC_U,	KC_I,	KC_O,	KC_P,	KC_BSLASH,
-  KC_LALT,	KC_A,	KC_S,	KC_D,	KC_F,	KC_G,			KC_H,	KC_J,	KC_K,	KC_L,	KC_SCOLON,	LGUI_T(KC_QUOTE),
+  KC_DELETE,	KC_Q,	KC_W,	KC_E,	KC_R,	KC_T,	TG(UTIL),	TG(UTIL),	KC_Y,	KC_U,	KC_I,	KC_O,	KC_P,	KC_BACKSLASH,
+  KC_LALT,	KC_A,	KC_S,	KC_D,	KC_F,	KC_G,			KC_H,	KC_J,	KC_K,	KC_L,	KC_SEMICOLON,	LGUI_T(KC_QUOTE),
   LSFT_T(KC_LEFT_PAREN),	LCTL_T(KC_Z),	KC_X,	KC_C,	KC_V,	KC_B,	TG(GAME),	TG(GAME),	KC_N,	KC_M,	KC_COMMA,	TD(TD_DOT_DOTS),	RCTL_T(KC_SLASH),	RSFT_T(KC_RIGHT_PAREN),
-  LT(UTIL,KC_GRAVE),	KC_QUOTE,	LALT(KC_LSHIFT),	KC_LEFT,	KC_RIGHT,					KC_UP,	KC_DOWN,	KC_LBRACKET,	KC_RBRACKET,	MO(UTIL),
+  LT(UTIL,KC_GRAVE),	KC_QUOTE,	LALT(KC_LSFT),	KC_LEFT,	KC_RIGHT,					KC_UP,	KC_DOWN,	KC_LBRC,	KC_RBRC,	MO(UTIL),
   
                                                   		LCTL_T(KC_APPLICATION),	KC_LGUI,     	KC_LALT,	LCTL_T(KC_ESCAPE),
 			KC_HOME,	KC_PGUP,		
-	KC_SPACE,	KC_BSPACE,	KC_END,	KC_PGDOWN,	KC_TAB,	KC_ENTER
+	KC_SPACE,	KC_BACKSPACE,	KC_END,	KC_PGDN,	KC_TAB,	KC_ENTER
   ),
 /* Keymap 1: Games
  *
@@ -99,8 +111,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TRNS,	KC_1,	KC_2,	KC_3,	KC_4,	KC_5,	KC_TRNS,               	KC_RGUI,	KC_6,	KC_7,	KC_8,	KC_9,	KC_0,	KC_TRNS,
   KC_TRNS,	KC_Q,	KC_W,	KC_E,	KC_R,	KC_T,	KC_TRNS,	KC_TRNS,	KC_TRNS,	KC_BTN1,	KC_MS_U,	KC_BTN2,	KC_TRNS,	KC_TRNS,
   KC_LALT,	KC_A,	KC_S,	KC_D,	KC_F,	KC_G,			KC_TRNS,	KC_MS_L,	KC_MS_D,	KC_MS_R,	KC_TRNS,	KC_TRNS,
-  KC_LSHIFT,	KC_Z,	KC_X,	KC_C,	KC_V,	KC_B,	KC_TRNS,	KC_TRNS,	KC_TRNS,	KC_TRNS,	KC_TRNS,	KC_TRNS,	KC_TRNS,	KC_TRNS,
-  KC_LCTRL,	KC_NO,	KC_NO,	KC_LEFT,	KC_RIGHT,					KC_UP,	KC_DOWN,	KC_NO,	KC_NO,	KC_TRNS,
+  KC_LSFT,	KC_Z,	KC_X,	KC_C,	KC_V,	KC_B,	KC_TRNS,	KC_TRNS,	KC_TRNS,	KC_TRNS,	KC_TRNS,	KC_TRNS,	KC_TRNS,	KC_TRNS,
+  KC_LCTL,	KC_NO,	KC_NO,	KC_LEFT,	KC_RIGHT,					KC_UP,	KC_DOWN,	KC_NO,	KC_NO,	KC_TRNS,
 
                                              		KC_TRNS,	KC_TRNS,     	KC_TRNS,	KC_ESCAPE,
 			KC_TRNS,	KC_TRNS,
@@ -262,14 +274,14 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 
 static bool dot_held;
 
-void dot_dots_each(qk_tap_dance_state_t *state, void *user_data) {
+void dot_dots_each(tap_dance_state_t *state, void *user_data) {
   if (state->count > 1) {
     unregister_code(KC_DOT);
   }
   register_code(KC_DOT);
 }
 
-void dot_dots_finished(qk_tap_dance_state_t *state, void *user_data) {
+void dot_dots_finished(tap_dance_state_t *state, void *user_data) {
   if (state->count == 3) {
     unregister_code(KC_DOT);
     tap_code(KC_BACKSPACE);
@@ -286,7 +298,7 @@ void dot_dots_finished(qk_tap_dance_state_t *state, void *user_data) {
   }
 };
 
-void dot_dots_reset(qk_tap_dance_state_t *state, void *user_data) {
+void dot_dots_reset(tap_dance_state_t *state, void *user_data) {
   if(dot_held) {
     unregister_code(KC_DOT);
     dot_held = false;
@@ -294,7 +306,7 @@ void dot_dots_reset(qk_tap_dance_state_t *state, void *user_data) {
 };
 
 // Tap Dance definitions
-qk_tap_dance_action_t tap_dance_actions[] = {
+tap_dance_action_t tap_dance_actions[] = {
     // Tap once for Period, thrice for ellipsis
     [TD_DOT_DOTS] = ACTION_TAP_DANCE_FN_ADVANCED(dot_dots_each, dot_dots_finished, dot_dots_reset),
     // Tap once for open paren, hold for left shift
