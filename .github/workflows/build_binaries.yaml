@@ -16,5 +16,5 @@ jobs:
   publish:
     name: 'QMK Userspace Publish'
     uses: qmk/.github/.github/workflows/qmk_userspace_publish.yml@qmk-userspace
-    if: always() && !cancelled()
+    if: github.ref == 'refs/heads/main'
     needs: build
