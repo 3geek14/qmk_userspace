@@ -33,10 +33,3 @@
 
 // Reduces firmware size and limits to 8 layers
 #define LAYER_STATE_8BIT
-
-#if __has_include("user_includes.h")
-#    include "user_includes.h"
-#else
-#    define EMAIL_STRING ""
-#    define SIGNATURE_STRING ""
-#endif

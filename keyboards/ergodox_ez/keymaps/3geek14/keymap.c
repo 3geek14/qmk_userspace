@@ -173,7 +173,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
     case SIGNATURE:
       if (record->event.pressed) {
-        send_unicode_string("4∑(-1)^n÷(2n+1) 🚣🎣"); // 4∑(-1)^n÷(2n+1) 🚣🎣
+        send_unicode_string(SIGNATURE_STRING);
         return true;
       }
     case THUMB_U:
