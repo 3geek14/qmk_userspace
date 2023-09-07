@@ -61,7 +61,7 @@ enum tap_dance_declarations {
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-	[QWER] = LAYOUT_moonlander(
+	[QWER] = LAYOUT(
 		KC_EQL,	KC_1,	KC_2,	KC_3,	KC_4,	KC_5,	KC_6,	/**/	KC_5,	KC_6,	KC_7,	KC_8,	KC_9,	KC_0,	KC_MINS,
 		KC_DEL,	KC_Q,	KC_W,	KC_E,	KC_R,	KC_T,	KC_Y,	/**/	KC_T,	KC_Y,	KC_U,	KC_I,	KC_O,	KC_P,	KC_BSLS,
 		LALT_T(CW_TOGG),	KC_A,	KC_S,	KC_D,	KC_F,	KC_G,	KC_H,	/**/	KC_G,	KC_H,	KC_J,	KC_K,	KC_L,	KC_SCLN,	LGUI_T(KC_QUOT),
@@ -70,7 +70,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		LT(UTIL,KC_GRV),	KC_PGUP,	KC_PGDN,	KC_LEFT,	KC_RGHT,		KC_HOME,	/**/	RCTL_T(KC_ESC),		KC_UP,	KC_DOWN,	KC_LBRC,	KC_RBRC,	MO(UTIL),
 						KC_SPC,	KC_BSPC,	KC_END,	/**/	LALT_T(KC_APPLICATION),	KC_TAB,	KC_ENT
 	),
-	[COLE] = LAYOUT_moonlander(
+	[COLE] = LAYOUT(
 		_______,	_______,	_______,	_______,	_______,	_______,	_______,	/**/	_______,	_______,	_______,	_______,	_______,	_______,	_______,
 		_______,	KC_Q,	KC_W,	KC_F,	KC_P,	KC_B,	_______,	/**/	_______,	KC_J,	KC_L,	KC_U,	KC_Y,	KC_SCLN,	_______,
 		_______,	KC_A,	KC_R,	KC_S,	KC_T,	KC_G,	_______,	/**/	_______,	KC_M,	KC_N,	KC_E,	KC_I,	KC_O,	_______,
@@ -79,7 +79,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		_______,	_______,	_______,	_______,	_______,		_______,	/**/	_______,		_______,	_______,	_______,	_______,	_______,
 						_______,	_______,	_______,	/**/	_______,	_______,	_______
 	),
-	[GAME] = LAYOUT_moonlander(
+	[GAME] = LAYOUT(
 		_______,	KC_1,	KC_2,	KC_3,	KC_4,	KC_5,	_______,	/**/	KC_RGUI,	KC_6,	KC_7,	KC_8,	KC_9,	KC_0,	_______,
 		_______,	KC_Q,	KC_W,	KC_E,	KC_R,	KC_T,	_______,	/**/	_______,	_______,	KC_BTN1,	KC_MS_U,	KC_BTN2,	_______,	_______,
 		KC_LALT,	KC_A,	KC_S,	KC_D,	KC_F,	KC_G,	_______,	/**/	_______,	_______,	KC_MS_L,	KC_MS_D,	KC_MS_R,	_______,	_______,
@@ -88,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_LCTL,	KC_NO,	KC_NO,	KC_LEFT,	KC_RGHT,		_______,	/**/	KC_ESC,		KC_UP,	KC_DOWN,	KC_NO,	KC_NO,	_______,
 						KC_SPC,	KC_BSPC,	_______,	/**/	_______,	KC_TAB,	KC_ENT
 	),
-	[UTIL] = LAYOUT_moonlander(
+	[UTIL] = LAYOUT(
 		_______,	KC_F1,	KC_F2,	KC_F3,	KC_F4,	KC_F5,	KC_F6,	/**/	KC_F5,	KC_F6,	KC_F7,	KC_F8,	KC_F9,	KC_F10,	KC_F11,
 		_______,	_______,	_______,	EYES,	_______,	_______,	TG(COLE),	/**/	_______,	THUMB_U,	KC_7,	KC_8,	KC_9,	_______,	KC_F12,
 		_______,	_______,	SCREENSHOT,	_______,	_______,	_______,	TG(GAME),	/**/	_______,	WAVE,	KC_4,	KC_5,	KC_6,	_______,	_______,
@@ -98,7 +98,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 						_______,	_______,	_______,	/**/	EMAIL,	SIGNATURE,	SHRUG
 	),
       /*
-	[LAYER] = LAYOUT_moonlander(
+	[LAYER] = LAYOUT(
 		_______,	_______,	_______,	_______,	_______,	_______,	_______,	**	_______,	_______,	_______,	_______,	_______,	_______,	_______,
 		_______,	_______,	_______,	_______,	_______,	_______,	_______,	**	_______,	_______,	_______,	_______,	_______,	_______,	_______,
 		_______,	_______,	_______,	_______,	_______,	_______,	_______,	**	_______,	_______,	_______,	_______,	_______,	_______,	_______,
